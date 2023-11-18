@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingWiki_Web", "CodingWiki_Web\CodingWiki_Web.csproj", "{946EB143-1FDB-4AE7-AF19-4BD307E4CEF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodingWiki_Web", "CodingWiki_Web\CodingWiki_Web.csproj", "{946EB143-1FDB-4AE7-AF19-4BD307E4CEF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingWikie_DataAccess", "CodingWikie_DataAccess\CodingWikie_DataAccess.csproj", "{CFB2D4D7-0114-4842-82AB-5219C2B58B3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingWiki_Model", "CodingWiki_Model\CodingWiki_Model.csproj", "{8920CD8D-CF78-4BB9-9227-A248DC2B1EA3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{946EB143-1FDB-4AE7-AF19-4BD307E4CEF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{946EB143-1FDB-4AE7-AF19-4BD307E4CEF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{946EB143-1FDB-4AE7-AF19-4BD307E4CEF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFB2D4D7-0114-4842-82AB-5219C2B58B3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB2D4D7-0114-4842-82AB-5219C2B58B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB2D4D7-0114-4842-82AB-5219C2B58B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB2D4D7-0114-4842-82AB-5219C2B58B3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8920CD8D-CF78-4BB9-9227-A248DC2B1EA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8920CD8D-CF78-4BB9-9227-A248DC2B1EA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8920CD8D-CF78-4BB9-9227-A248DC2B1EA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8920CD8D-CF78-4BB9-9227-A248DC2B1EA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,6 +3,7 @@ using CodingWiki_DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodingWiki_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231119191025_renameDesplayColumnInGenreTable")]
+    partial class renameDesplayColumnInGenreTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,43 +45,6 @@ namespace CodingWiki_DataAccess.Migrations
                     b.HasKey("IdBook");
 
                     b.ToTable("Books");
-
-                    b.HasData(
-                        new
-                        {
-                            IdBook = 1,
-                            ISBN = "123812",
-                            Price = 10.99m,
-                            Title = "Spìder without Duty"
-                        },
-                        new
-                        {
-                            IdBook = 2,
-                            ISBN = "11223812",
-                            Price = 11.99m,
-                            Title = "Fortune of Time"
-                        },
-                        new
-                        {
-                            IdBook = 3,
-                            ISBN = "123812",
-                            Price = 20.99m,
-                            Title = "Fake Sunday"
-                        },
-                        new
-                        {
-                            IdBook = 4,
-                            ISBN = "CC123812",
-                            Price = 25.99m,
-                            Title = "Cooklie Jar"
-                        },
-                        new
-                        {
-                            IdBook = 5,
-                            ISBN = "90311223812",
-                            Price = 40.99m,
-                            Title = "Cloudy Forest"
-                        });
                 });
 
             modelBuilder.Entity("CodingWiki_Model.Models.Genre", b =>

@@ -1,0 +1,6 @@
+source https://api.nuget.org/v3/index.json
+
+storage: none
+
+nuget Microsoft.EntityFrameworkCore.SqlServer ~> 7.0.14
+nuget Microsoft.EntityFrameworkCore.Tools ~> 7.0.14

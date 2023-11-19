@@ -1,0 +1,5 @@
+source https://api.nuget.org/v3/index.json
+
+storage: none
+
+nuget Microsoft.EntityFrameworkCore.Design ~> 7.0.14

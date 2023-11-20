@@ -8,16 +8,13 @@ using System.Threading.Tasks;
 
 namespace CodingWiki_Model.Models
 {
-    public class Book
+    [Table("Subcategories")]
+    public class Subcategory
     {
         [Key]
-        public int IdBook { get; set; }
-        public string Title { get; set; }
-        [MaxLength(20)]
+        public int SubCategory_Id { get; set; }
         [Required]
-        public string ISBN { get; set; }
-        public decimal Price { get; set; }
-        [NotMapped]
-        public string PriceRange { get; set; }
+        [StringLength(50)]
+        public string Name { get; set; }
     }
 }

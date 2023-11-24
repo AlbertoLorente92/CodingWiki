@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace CodingWiki_Model.Models
 {
-    [Table("Publishers")]
-    public class Publisher
+    public class BookAuthorMap
     {
-        [Key]
-        public int Publisher_Id { get; set; }
-        [Required]
-        public string Name { get; set; }
-        public string Location{ get; set; }
+        [ForeignKey("Book")]
+        public int Book_Id { get; set; }
+        [ForeignKey("Author")]
+        public int Author_Id { get; set; }
 
-        public List<Book> Books { get; set; }
+        public Book Book { get; set; }
+        public Author Author { get; set; }
     }
 }

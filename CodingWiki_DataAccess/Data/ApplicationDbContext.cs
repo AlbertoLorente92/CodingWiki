@@ -25,10 +25,15 @@ namespace CodingWiki_DataAccess.Data
         public DbSet<Fluent_Publisher> Publishers_fluent { get; set; }
         public DbSet<Fluent_BookAuthorMap> BookAuthorMap_fluent { get; set; }
 
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=DESKTOP-T7TMOUV\\SQLEXPRESS;DataBase=CodingWiki;TrustServerCertificate=True;Trusted_Connection=True;")
-                .LogTo(Console.WriteLine, new[] {DbLoggerCategory.Database.Command.Name}, LogLevel.Information);
+            //optionsBuilder.UseSqlServer("Server=DESKTOP-T7TMOUV\\SQLEXPRESS;DataBase=CodingWiki;TrustServerCertificate=True;Trusted_Connection=True;")
+            //    .LogTo(Console.WriteLine, new[] {DbLoggerCategory.Database.Command.Name}, LogLevel.Information);
 
             base.OnConfiguring(optionsBuilder);
         }

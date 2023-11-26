@@ -23,13 +23,15 @@
                     <th>
                         Title
                     </th>
-
+                    <td>
+                        Price
+                    </td>
+                    <th>
+                        Publisher
+                    </th>
                     @*<th>
-                Publisher
-                </th>
-                <th>
-                Authors
-                </th>*@
+                        Authors
+                    </th>*@
                     <th></th>
                 </tr>
                 @foreach (var item in Model)
@@ -38,19 +40,22 @@
                         <td>
                             @item.Title
                         </td>
+                        <td>
+                            @item.Price.ToString("c")
+                        </td>
+                        <td>
+                            @item.Publisher.Name
+                        </td>
                         @*<td>
-                @item.Publisher.Name
-                </td>
-                <td>
-                @{
-                var authors = "";
-                }
-                @foreach(var auth in item.BookAuthors)
-                {
-                authors += @auth.Author.FullName + ", ";
-                }
-                @authors.Trim().TrimEnd(',')
-                </td>*@
+                            @{
+                            var authors = "";
+                            }
+                            @foreach(var auth in item.BookAuthorMap)
+                            {
+                                authors += @auth.Author.FullName + ", ";
+                            }
+                            @authors.Trim().TrimEnd(',')
+                        </td>*@
                         <td>
                             <a class="btn btn-primary text-white" asp-action="Upsert" asp-route-Id="@item.IdBook">
                                 Edit

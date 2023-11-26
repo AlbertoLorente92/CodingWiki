@@ -136,6 +136,59 @@ namespace CodingWiki_Web.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult ManageAuthors(int id)
+        {
+            BookAuthorVM obj = new()
+            {
+                BookAuthorList = _db.BookAuthorMaps
+                .Include(u => u.Author)
+                .Include(u => u.Book)
+                .Where(u => u.Book_Id == id)
+                .ToList(),
+                BookAuthor = new() { Book_Id = id},
+                Book = _db.Books.FirstOrDefault(u => u.IdBook == id)
+            };
+
+            List<int> tempListOfAssignerAuthor = obj.BookAuthorList.Select(u => u.Author_Id).ToList();
+
+            // NOT IN
+            // get all the authors whos id is not in tempListOfAssignerAuthor
+            var tempList = _db.Authors.Where(u => !tempListOfAssignerAuthor.Contains(u.Author_Id)).ToList();
+            obj.AuthorList = tempList.Select(
+                i => new SelectListItem
+                {
+                    Text = i.FullName,
+                    Value = i.Author_Id.ToString()
+                }
+            );
+
+            return View(obj);
+        }
+
+        [HttpPost]
+        public IActionResult ManageAuthors(BookAuthorVM bookAuthorVM)
+        {
+            if(bookAuthorVM.BookAuthor.Book_Id != 0 && bookAuthorVM.BookAuthor.Author_Id != 0)
+            {
+                _db.BookAuthorMaps.Add(bookAuthorVM.BookAuthor);
+                _db.SaveChanges();
+            }
+            return RedirectToAction(nameof(ManageAuthors), new { @id = bookAuthorVM.BookAuthor.Book_Id });
+        }
+
+        [HttpPost]
+        public IActionResult RemoveAuthors(int authorId, BookAuthorVM bookAuthorVM)
+        {
+            int bookId = bookAuthorVM.Book.IdBook;
+            BookAuthorMap bookAuthorMap = _db.BookAuthorMaps.FirstOrDefault(
+                u => u.Author_Id == authorId && u.Book_Id == bookId    
+            );
+
+            _db.BookAuthorMaps.Remove(bookAuthorMap);
+            _db.SaveChanges();
+            
+            return RedirectToAction(nameof(ManageAuthors), new { @id = bookId });
+        }
 
         public async Task<IActionResult> PlayGround()
         {

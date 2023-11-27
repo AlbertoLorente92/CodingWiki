@@ -206,18 +206,36 @@ namespace CodingWiki_Web.Controllers
 
         public async Task<IActionResult> PlayGround()
         {
-            //updating related data
-            var bookDetails1 = _db.BookDetails.Include(b => b.Book).FirstOrDefault(b => b.BookDetail_Id == 4);
-            bookDetails1.NumberOfChapters = 2222;
-            bookDetails1.Book.Price = 222;
-            _db.BookDetails.Update(bookDetails1);
-            await _db.SaveChangesAsync();
 
-            var bookDetails2 = _db.BookDetails.Include(b => b.Book).FirstOrDefault(b => b.BookDetail_Id == 4);
-            bookDetails2.NumberOfChapters = 1111;
-            bookDetails2.Book.Price = 111;
-            _db.BookDetails.Attach(bookDetails2);
-            await _db.SaveChangesAsync();
+            //view 
+
+            //var viewList = _db.MainBookDetails.ToList();
+            //var viewList2 = _db.MainBookDetails.FirstOrDefault();
+            //var viewList3 = _db.MainBookDetails.Where(u => u.Price > 30);
+
+            // raw sql
+            //var bookRaw = _db.Books.FromSqlRaw($"select * from dbo.books").ToList();
+            //var id = 1;
+            //var bookInterpolated = _db.Books.FromSqlInterpolated($"select * from dbo.books where idbook={id}").ToList();
+
+
+            //sproc -- getBookDetailById
+            var id = 1;
+            var booksproc = _db.Books.FromSqlInterpolated($"EXEC dbo.getBookDetailById {id}").ToList();
+            // use dapper to execute stored procedures
+
+            //updating related data
+            //var bookDetails1 = _db.BookDetails.Include(b => b.Book).FirstOrDefault(b => b.BookDetail_Id == 4);
+            //bookDetails1.NumberOfChapters = 2222;
+            //bookDetails1.Book.Price = 222;
+            //_db.BookDetails.Update(bookDetails1);
+            //await _db.SaveChangesAsync();
+            //
+            //var bookDetails2 = _db.BookDetails.Include(b => b.Book).FirstOrDefault(b => b.BookDetail_Id == 4);
+            //bookDetails2.NumberOfChapters = 1111;
+            //bookDetails2.Book.Price = 111;
+            //_db.BookDetails.Attach(bookDetails2);
+            //await _db.SaveChangesAsync();
 
             //IEnumerable<Book> booklist1 = _db.Books;                // aplica el WHERE en memoria (lento)
             //var filterBook1 = booklist1.Where(b => b.Price > 50).ToList();

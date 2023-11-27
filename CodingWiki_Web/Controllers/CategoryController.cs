@@ -2,6 +2,7 @@
 using CodingWiki_Model.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodingWiki_Web.Controllers
 {
@@ -16,7 +17,7 @@ namespace CodingWiki_Web.Controllers
 
         public IActionResult Index()
         {
-            List<Category> objList = _db.Categories.ToList();
+            List<Category> objList = _db.Categories.AsNoTracking().ToList();
             return View(objList);
         }
 

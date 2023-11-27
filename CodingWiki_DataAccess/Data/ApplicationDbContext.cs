@@ -25,6 +25,8 @@ namespace CodingWiki_DataAccess.Data
         public DbSet<Fluent_Publisher> Publishers_fluent { get; set; }
         public DbSet<Fluent_BookAuthorMap> BookAuthorMap_fluent { get; set; }
 
+        public DbSet<MainBookDetails> MainBookDetails { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
@@ -46,6 +48,8 @@ namespace CodingWiki_DataAccess.Data
             modelBuilder.ApplyConfiguration(new FluentBookDetailConfig());
             modelBuilder.ApplyConfiguration(new FluentPublisherConfig());
 
+            modelBuilder.Entity<MainBookDetails>().HasNoKey().ToView("GetMainBookDetails");
+            
 
             modelBuilder.Entity<Book>().Property(u => u.Price).HasPrecision(10, 5);
 

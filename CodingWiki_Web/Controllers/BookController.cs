@@ -19,12 +19,26 @@ namespace CodingWiki_Web.Controllers
 
         public IActionResult Index()
         {
-            List<Book> objList = _db.Books.Include(u => u.Publisher).ToList();  // bestway
+            IQueryable<Book> objList = _db.Books.Include(u => u.Publisher)
+                .Include(u => u.BookAuthorMap)
+                .ThenInclude(u => u.Author);         // incluir entidades de la subentidad  // bestway
+
+
+            //var temp = objList.Where(u => u.IdBook == 4).ToList();            
+            // tener cuidado con lazy loading UseLazyLoadingProxies() puede provocar muchas cargas
+
+            //List<Book> objList = _db.Books.ToList();
             //foreach(var obj in objList)
             //{
             //    // obj.Publisher = _db.Publishers.Find(obj.Publisher_id); // muy costoso
             //
-            //    _db.Entry(obj).Reference(u => u.Publisher).Load();          // lo carga una vez y lo mantiene
+            //    _db.Entry(obj).Reference(u => u.Publisher).Load();          // 1.1 lo carga una vez y lo mantiene
+            //    _db.Entry(obj).Collection(u => u.BookAuthorMap).Load();       // 1.N Explicit loading
+            //    foreach(var BookAuthor in obj.BookAuthorMap)
+            //    {
+            //        _db.Entry(BookAuthor).Reference(u => u.Author).Load();
+            //    }
+            //    
             //}
             return View(objList);
         }

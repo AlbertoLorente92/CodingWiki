@@ -19,10 +19,10 @@ namespace CodingWiki_Model.Models
         public decimal Price { get; set; }
         [NotMapped]
         public string PriceRange { get; set; }
-        public BookDetail BookDetail1 { get; set; }
+        public virtual BookDetail BookDetail1 { get; set; }
         [ForeignKey("Publisher")]
         public int Publisher_id { get; set; }
-        public Publisher Publisher { get; set; }
-        public List<BookAuthorMap> BookAuthorMap { get; set; }
+        public virtual Publisher Publisher { get; set; }
+        public virtual List<BookAuthorMap> BookAuthorMap { get; set; }
     }
 }
